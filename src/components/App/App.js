@@ -1,26 +1,26 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css';
 
 import Admin from '../Admin/Admin';
+import User from '../User/User';
+import NotFound from '../NotFound/NotFound';
+import Header from '../Header/Header';
 
 class App extends Component {
-  state = { users: [] }
-
-/*   componentDidMount(){
-    fetch('/users')
-      .then(res => res.json())
-      .then(users => this.setState({ users }))
-  } */
   render() {
     return (
-      <div className="App">
-        <h1>Serials</h1>
-        <ul>
-          {this.state.users.map(user => 
-            <li key = {user.id}>{user.title} | {user.date_of} | {user.priority}</li>)}
-        </ul>
-        <Admin/>
-      </div>
+      <Router>
+        <div className="App">
+          <Header/>
+          <Switch>
+            <Route exact path = '/' component = {User}/>
+            <Route path = '/admin' component = {Admin}/>            
+            <Route component = {NotFound}/>
+          </Switch>          
+        </div>
+      </Router>
+      
     );
   }
 }

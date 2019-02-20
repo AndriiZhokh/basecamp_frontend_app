@@ -1,28 +1,29 @@
 import React, { Component } from 'react';
-import './AddShowForm.sass';
+import './AddEpisodeForm.sass';
 
 import Input from '../FormComponents/Input';
 import Textarea from '../FormComponents/Textarea';
 import Select from '../FormComponents/Select';
 import File from '../FormComponents/File';
 
-export default class AddShowForm extends Component {
-  constructor(props) {
-    super(props);
+class AddEpisodeForm extends Component {
+  constructor() {
+    super();
     this.state = {
-      title: '',
-      subtitle: '',
-      date_of_start: '',
+      episodeName: '',
+      episodeNumber: '',
+      relatedShow: '',
+      relatedSeason: '',
       long: '',
       short: '',
       url: '',
-      priority: '1',
       rating: '1',
     };
     this.fileInput = React.createRef();
   }
 
   sendData = (url, data, file) => {
+    console.log(file.current.files[0]);
     const formData = new FormData();
 
     for(const name in data) {
@@ -31,10 +32,14 @@ export default class AddShowForm extends Component {
 
     formData.append('image', file.current.files[0], file.current.files[0].name);
 
+    for(const name of formData) {
+      console.log(name);
+    }
+
     fetch(url, {
       method: 'POST',
       body: formData
-    }).then((res)=>{this.props.onAdd()});
+    });
   }
 
   handleChange = (event) => {
@@ -45,45 +50,27 @@ export default class AddShowForm extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    this.sendData('/show', this.state, this.fileInput);
-    this.setState({
-      title: '',
-      subtitle: '',
-      date_of_start: '',
-      long: '',
-      short: '',
-      url: '',
-      priority: '1',
-      rating: '1',
-    });
+    /* this.sendData('/addshow', this.state, this.fileInput); */
   }
   
   render() {
     return(
-      <div className = "col s6">
-        <h5>Add new show</h5>
+      <div className = "col s4">
+        <h5>Add new episode</h5>
         <form className = "add-show-form" onSubmit = {this.handleSubmit}>
           <Input
-            title = 'Enter Title'
-            name = 'title'
+            title = 'Enter Episode Name'
+            name = 'episodeName'
             type = 'text'
-            value = {this.state.title}
-            handleChange = {this.handleChange}
-            required />
-          
-          <Input
-            title = 'Enter Subtitle'
-            name = 'subtitle'
-            type = 'text'
-            value = {this.state.subtitle}
+            value = {this.state.episodeName}
             handleChange = {this.handleChange}
             required />
 
           <Input
-            title = 'Chose date of start'
-            name = 'date_of_start'
-            type = 'date'
-            value = {this.state.date_of_start}
+            title = 'Enter Episode Number'
+            name = 'episodeNumber'
+            type = 'number'
+            value = {this.state.episodeNumber}
             handleChange = {this.handleChange}
             required />
 
@@ -93,7 +80,7 @@ export default class AddShowForm extends Component {
             value = {this.state.long}
             handleChange = {this.handleChange}
             required />
-            
+
           <Textarea
             title = 'Short Description'
             name = 'short'
@@ -105,17 +92,9 @@ export default class AddShowForm extends Component {
             title = 'Video URL'
             name = 'url'
             type = 'url'
-            value = {this.setState.url}
+            value = {this.state.url}
             handleChange = {this.handleChange}
             required />
-
-          <Select
-            title = 'Priority'
-            name = 'priority'
-            className = 'browser-default'
-            value = {this.state.prioryty}
-            handleChange = {this.state.prioryty}
-            options = {['1', '2', '3', '4', '5']} />
 
           <Select
             title = 'User rating'
@@ -123,14 +102,16 @@ export default class AddShowForm extends Component {
             className = 'browser-default'
             value = {this.state.rating}
             handleChange = {this.handleChange}
-            options = {['1', '2', '3', '4', '5', '6', '7', '8', '9', '10']} />
+            options = {['1', '2', '3', '4', '5', '6', '7', '8', '9', '10']}
+            required />
 
           <File
-            title = 'Chose Poster'
+            title = 'Chose image'
             name = 'image'
             type = 'file'
-            inputRef = {this.fileInput} />
-          
+            inputRef = {this.fileInput}
+            required />
+
           <button className = "btn waves-effect waves-light" type = "submit">Send data</button>
         </form>
       </div>
@@ -138,3 +119,5 @@ export default class AddShowForm extends Component {
     );
   }
 }
+
+export default AddEpisodeForm;
