@@ -9,15 +9,15 @@ class Admin extends Component {
 
   render () {
     return (
-      <Switch>
-        <div className = "container">
-          <h1>Admin Panel</h1>
-          <div className = "row">
+      <div className = "container">
+        <h1>Admin Panel</h1>        
+        <div className = "row">
+          <Switch>
             <Route exact path = '/admin' component = {AddShow} />
             <Route path = '/admin/show/:id' component = {Show} />
-          </div>
-        </div>
-      </Switch>      
+          </Switch>
+        </div>        
+      </div>   
     );
   }
 }

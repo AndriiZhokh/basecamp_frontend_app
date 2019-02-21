@@ -7,12 +7,12 @@ import Select from '../FormComponents/Select';
 import File from '../FormComponents/File';
 
 class AddSeasonForm extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       seasonName: '',
       seasonNumber: '',
-      relatedShow: '',
+      relatedShow: this.props.related,
       long: '',
       short: '',
       url: '',
@@ -38,7 +38,7 @@ class AddSeasonForm extends Component {
     fetch(url, {
       method: 'POST',
       body: formData
-    });
+    }).then((res)=>{this.props.onAdd()});
   }
 
   handleChange = (event) => {
@@ -49,7 +49,7 @@ class AddSeasonForm extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    /* this.sendData('/addshow', this.state, this.fileInput); */
+    this.sendData('/season', this.state, this.fileInput);
   }
   
   render() {
