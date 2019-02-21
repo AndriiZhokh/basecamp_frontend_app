@@ -40,7 +40,7 @@ export default class Show extends Component {
         <h3>Show # {this.state.relatedShow}</h3>
         <Link className = 'btn' to = '/admin'>Back</Link>
         <AddSeasonForm related = {this.state.relatedShow} onAdd = {this.onAdd} />
-        <ListOfSeason items = {this.state.seasons} />
+        <ListOfSeason items = {this.state.seasons} rel = {this.state.relatedShow} />
       </div>
     );
   }
