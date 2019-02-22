@@ -54,7 +54,7 @@ class AddSeasonForm extends Component {
   
   render() {
     return(
-      <div className = "col s4">
+      <div className = "col s6">
         <h5>Add new season</h5>
         <form className = "add-show-form" onSubmit = {this.handleSubmit}>
           <Input 

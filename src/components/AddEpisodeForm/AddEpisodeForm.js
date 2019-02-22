@@ -7,13 +7,13 @@ import Select from '../FormComponents/Select';
 import File from '../FormComponents/File';
 
 class AddEpisodeForm extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       episodeName: '',
       episodeNumber: '',
-      relatedShow: '',
-      relatedSeason: '',
+      relatedShow: this.props.show,
+      relatedSeason: this.props.season,
       long: '',
       short: '',
       url: '',
@@ -21,6 +21,8 @@ class AddEpisodeForm extends Component {
     };
     this.fileInput = React.createRef();
   }
+
+
 
   sendData = (url, data, file) => {
     console.log(file.current.files[0]);
@@ -50,12 +52,12 @@ class AddEpisodeForm extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    /* this.sendData('/addshow', this.state, this.fileInput); */
+    this.sendData('/episode', this.state, this.fileInput);
   }
   
   render() {
     return(
-      <div className = "col s4">
+      <div className = "col s6">
         <h5>Add new episode</h5>
         <form className = "add-show-form" onSubmit = {this.handleSubmit}>
           <Input
