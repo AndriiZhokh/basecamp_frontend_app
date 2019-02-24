@@ -29,8 +29,13 @@ export default class Season extends Component {
       <div>
         <Link className = 'btn' to = {`/admin/show/${this.state.show}`}>Back</Link>
         <h3>Show #{this.state.show} Season #{this.state.season}</h3>
-        <AddEpisodeForm show = {this.state.show} season = {this.state.season} />
-        <ListOfEpisode items = {this.state.episodes} show = {this.state.show} season = {this.state.season} />
+        <AddEpisodeForm 
+          show = {this.state.show} 
+          season = {this.state.season} />
+        <ListOfEpisode 
+          items = {this.state.episodes} 
+          show = {this.state.show} 
+          season = {this.state.season} />
       </div>      
     );
   }
