@@ -16,7 +16,6 @@ export default class Show extends Component {
     fetch('/season')
     .then(response => response.json())
     .then(data => {
-      /* console.log(data); */
       this.setState({seasons: data})
     })
     .catch(err => console.log('err'));
@@ -34,13 +33,17 @@ export default class Show extends Component {
   }
 
   render() {
-    console.log(this.state.seasons);
     return(
       <div>
         <h3>Show # {this.state.relatedShow}</h3>
         <Link className = 'btn' to = '/admin'>Back</Link>
-        <AddSeasonForm related = {this.state.relatedShow} onAdd = {this.onAdd} />
-        <ListOfSeason items = {this.state.seasons} rel = {this.state.relatedShow} show = {this.state.relatedShow} />
+        <AddSeasonForm 
+          related = {this.state.relatedShow} 
+          onAdd = {this.onAdd} />
+        <ListOfSeason 
+          items = {this.state.seasons} 
+          rel = {this.state.relatedShow} 
+          show = {this.state.relatedShow} />
       </div>
     );
   }

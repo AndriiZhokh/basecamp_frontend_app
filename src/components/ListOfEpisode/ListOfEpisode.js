@@ -16,7 +16,6 @@ export default class ListOfEpisode extends Component {
 
   renderForm = (id, item) => {
     if(this.state.form && this.state.id.toString() === id.toString()) {
-      console.log(item);
       return <UpdateEpisode episode = {item} />
     }
   }

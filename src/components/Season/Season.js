@@ -17,14 +17,12 @@ export default class Season extends Component {
     fetch('/episode')
     .then(response => response.json())
     .then(data => {
-      console.log(data);
       this.setState({episodes: data})
     })
     .catch(err => console.log('err'));
   }
 
   render() {
-    console.log(this.state.episodes);
     return(
       <div>
         <Link className = 'btn' to = {`/admin/show/${this.state.show}`}>Back</Link>
