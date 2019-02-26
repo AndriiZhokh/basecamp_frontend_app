@@ -22,6 +22,24 @@ export default class Season extends Component {
     .catch(err => console.log('err'));
   }
 
+  onAdd = () => {
+    console.log(this.state);
+    fetch('/episode')
+      .then(response => response.json())
+      .then(data => {
+        console.log(data);
+        this.setState({episodes: data})
+      })
+      .catch(err => console.log('err'));
+  }
+
+  onDelete = (id) => {
+    const i = this.state.episodes.filter((item) => {
+      return id.toString() !== item.id.toString();
+    });
+    this.setState({episodes: i});
+  }
+
   render() {
     return(
       <div>
@@ -29,11 +47,13 @@ export default class Season extends Component {
         <h3>Show #{this.state.show} Season #{this.state.season}</h3>
         <AddEpisodeForm 
           show = {this.state.show} 
-          season = {this.state.season} />
+          season = {this.state.season}
+          onAdd = {this.onAdd} />
         <ListOfEpisode 
           items = {this.state.episodes} 
           show = {this.state.show} 
-          season = {this.state.season} />
+          season = {this.state.season}
+          del = {this.onDelete} />
       </div>      
     );
   }

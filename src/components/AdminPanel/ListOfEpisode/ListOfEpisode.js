@@ -6,7 +6,9 @@ export default class ListOfEpisode extends Component {
     super();
     this.state = {
       form: false,
-      id: ''
+      id: '',
+      response: '',
+      idw: ''
     }
   }
 
@@ -17,6 +19,29 @@ export default class ListOfEpisode extends Component {
   renderForm = (id, item) => {
     if(this.state.form && this.state.id.toString() === id.toString()) {
       return <UpdateEpisode episode = {item} />
+    }
+  }
+
+  delItem = (e) => {    
+    const id = e.target.id;
+    this.setState({idw: e.target.id});
+    fetch(`/episode/${e.target.id}`, {
+      method: 'DELETE'
+    })
+      .then(response => response.json())
+      .then(data => {
+        if(data.res){
+          this.props.del(id);
+        } else {
+          this.setState({response: data.err})
+        }        
+      })
+      .catch(err => console.log(err));
+  }
+
+  renderWarming = (id) => {
+    if(id.toString() === this.state.idw.toString()) {
+      return this.state.response;
     }
   }
 
@@ -31,7 +56,11 @@ export default class ListOfEpisode extends Component {
         <div key = {item.id} className = "collection-item">
           <li>
             {item.episode_name}
-            <button id = {item.id} className = 'btn' onClick = {this.handleClick}>Update</button>
+            <div>
+              <button id = {item.id} className = 'btn' onClick = {this.handleClick}>Update</button>
+              <button id = {item.id} className = 'btn red' onClick = {this.delItem}>Delete</button>
+            </div>
+            <p>{this.renderWarming(item.id)}</p>
           </li>          
           {this.renderForm(item.id, item)}
         </div>);

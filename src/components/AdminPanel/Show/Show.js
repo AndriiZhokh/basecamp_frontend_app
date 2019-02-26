@@ -27,9 +27,16 @@ export default class Show extends Component {
       .then(response => response.json())
       .then(data => {
         console.log(data);
-        this.setState({items: data})
+        this.setState({seasons: data})
       })
       .catch(err => console.log('err'));
+  }
+
+  onDelete = (id) => {
+    const i = this.state.seasons.filter((item) => {
+      return id.toString() !== item.id.toString();
+    });
+    this.setState({seasons: i});
   }
 
   render() {
@@ -43,7 +50,8 @@ export default class Show extends Component {
         <ListOfSeason 
           items = {this.state.seasons} 
           rel = {this.state.relatedShow} 
-          show = {this.state.relatedShow} />
+          show = {this.state.relatedShow}
+          del = {this.onDelete} />
       </div>
     );
   }

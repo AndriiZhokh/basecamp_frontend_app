@@ -33,12 +33,21 @@ export default class AddShow extends Component {
       .catch(err => console.log('err'));
   }
 
-  render() {
+  onDelete = (id) => {
+    console.log(id);
+    console.log(this.state.items);
+    const i = this.state.items.filter((item) => {
+      return id.toString() !== item.id.toString();
+    });
+    console.log(i);
+    this.setState({items: i});
+  }
 
+  render() {
     return (
       <div className = "add-show">
         <AddShowForm onAdd = {this.onAdd}/>
-        <ListOfShow items = {this.state.items} />
+        <ListOfShow items = {this.state.items} del = {this.onDelete} />
       </div>
     );
   }

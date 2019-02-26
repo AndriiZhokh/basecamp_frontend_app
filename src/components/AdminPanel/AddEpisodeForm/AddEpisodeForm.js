@@ -41,7 +41,7 @@ class AddEpisodeForm extends Component {
     fetch(url, {
       method: 'POST',
       body: formData
-    });
+    }).then((res)=>{this.props.onAdd()});
   }
 
   handleChange = (event) => {

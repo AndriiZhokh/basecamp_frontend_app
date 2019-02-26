@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css';
 
-import Admin from '../Admin/Admin';
+import Admin from '../AdminPanel/Admin/Admin';
 import User from '../User/User';
 import NotFound from '../NotFound/NotFound';
 import Header from '../Header/Header';
