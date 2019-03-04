@@ -100,7 +100,7 @@ class UpdateShow extends Component {
             className = 'browser-default'
             value = {this.state.priority}
             handleChange = {this.handleChange}
-            options = {['1', '2', '3', '4', '5']} />
+            options = {['1', '0']} />
 
           <Input
             title = 'Video URL'

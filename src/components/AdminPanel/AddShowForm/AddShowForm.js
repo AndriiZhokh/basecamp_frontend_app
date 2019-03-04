@@ -115,7 +115,7 @@ export default class AddShowForm extends Component {
             className = 'browser-default'
             value = {this.state.prioryty}
             handleChange = {this.state.prioryty}
-            options = {['1', '2', '3', '4', '5']} />
+            options = {['1', '0']} />
 
           <Select
             title = 'User rating'
