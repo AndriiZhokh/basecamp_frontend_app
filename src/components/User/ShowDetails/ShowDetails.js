@@ -13,7 +13,20 @@ export default class ShowDetails extends Component {
       seasons: [],
       loading: false,
       error: null,
+      rating: 0,
     }
+  }
+
+  changeRating = (newRating, name) => {
+    this.setState({rating: newRating});
+
+    const formData = new FormData();
+    formData.append('rating', newRating );
+
+    fetch(`/rating/${this.state.show.id}`, {
+      method: 'PUT',
+      body: formData
+    });
   }
 
   componentDidMount() {
@@ -28,7 +41,8 @@ export default class ShowDetails extends Component {
         }
       })
       .then(data => {
-        this.setState({show: data[0], loading: false});
+        this.setState({show: data[0], loading: false, rating: data[0].users_rating});
+        console.log(data[0].users_rating)
         fetch('/seasons')
           .then(res => res.json())
           .then(data => this.setState({seasons: data}))
@@ -72,13 +86,14 @@ export default class ShowDetails extends Component {
             <div>
               <h5>Users rating</h5>
               <StarRatings
-                rating = {show.users_rating}
+                rating = {this.state.rating}
                 starRatedColor = '#ee6e73'
                 starEmptyColor = '#ffffff'
                 numberOfStars = {10}
                 starDimension = '20px'
                 starSpacing = '3px'
-                name = 'rating' />
+                name = 'rating'
+                changeRating = {this.changeRating} />
             </div>          
           </div>
         </div>
