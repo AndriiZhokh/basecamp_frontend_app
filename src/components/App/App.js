@@ -9,6 +9,7 @@ import Header from '../Header/Header';
 import ShowDetails from '../User/ShowDetails/ShowDetails';
 import SeasonDetails from '../User/SeasonDetails/SeasonDetails';
 import EpisodeDetails from '../User/EpisodeDetails/EpisodeDetails';
+import AllShows from '../User/AllShows/AllShows';
 
 class App extends Component {
   render() {
@@ -22,6 +23,7 @@ class App extends Component {
             <Route exact path = '/show_details/:id' component = {ShowDetails} />
             <Route exact path = '/show_details/:title/season/:id' component = {SeasonDetails} />
             <Route path = '/show_details/:title/season/:id/episode/:eid' component = {EpisodeDetails} />
+            <Route path = '/allshows' component = {AllShows} />
             <Route component = {NotFound}/>
           </Switch>          
         </div>

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Repeater from '../Repeater/Repeater';
 
-export default class PopularShows extends Component {
+export default class AllShows extends Component {
   constructor() {
     super();
     this.state = {
@@ -20,11 +20,10 @@ export default class PopularShows extends Component {
     const { shows } = this.state;
     return (
       <div>
-        <h1>Most Popular</h1>
+        <h1>All Shows</h1>
         <Repeater 
           cl = 'row' 
-          items = {shows}
-          filter />
+          items = {shows} />
       </div>
     );
   }
