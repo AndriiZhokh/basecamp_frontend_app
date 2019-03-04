@@ -14,7 +14,7 @@ export default class Season extends Component {
   }
 
   componentDidMount() {
-    fetch('/episode')
+    fetch('/episodes')
     .then(response => response.json())
     .then(data => {
       this.setState({episodes: data})

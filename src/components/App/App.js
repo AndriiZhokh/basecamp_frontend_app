@@ -7,6 +7,8 @@ import User from '../User/User';
 import NotFound from '../NotFound/NotFound';
 import Header from '../Header/Header';
 import ShowDetails from '../User/ShowDetails/ShowDetails';
+import SeasonDetails from '../User/SeasonDetails/SeasonDetails';
+import EpisodeDetails from '../User/EpisodeDetails/EpisodeDetails';
 
 class App extends Component {
   render() {
@@ -17,7 +19,9 @@ class App extends Component {
           <Switch>
             <Route exact path = '/' component = {User}/>
             <Route path = '/admin' component = {Admin}/>
-            <Route path = '/show_details/:id' component = {ShowDetails} />       
+            <Route exact path = '/show_details/:id' component = {ShowDetails} />
+            <Route exact path = '/show_details/:title/season/:id' component = {SeasonDetails} />
+            <Route path = '/show_details/:title/season/:id/episode/:eid' component = {EpisodeDetails} />
             <Route component = {NotFound}/>
           </Switch>          
         </div>

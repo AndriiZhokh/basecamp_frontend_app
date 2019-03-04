@@ -13,7 +13,7 @@ export default class AddShow extends Component {
   }
 
   componentDidMount() {
-    fetch('/show')
+    fetch('/shows')
       .then(response => response.json())
       .then(data => {
         console.log(data);

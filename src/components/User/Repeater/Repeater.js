@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ShowPreview from '../ShowPreview/ShowPreview';
+
 export default class Repeater extends Component {
 
   render() {    
@@ -12,7 +13,7 @@ export default class Repeater extends Component {
 
     return (
       <div className = {cl}>        
-          {list}
+        {list}
       </div>
     );
   }

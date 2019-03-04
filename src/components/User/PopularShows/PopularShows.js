@@ -10,7 +10,7 @@ export default class PopularShows extends Component {
   }
 
   componentDidMount() {
-    fetch('/show')
+    fetch('/shows')
       .then(res => res.json())
       .then(data => this.setState({shows: data}))
       .catch(err => console.log(err));

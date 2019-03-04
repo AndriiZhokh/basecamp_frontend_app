@@ -13,6 +13,9 @@ export default class Header extends Component {
             <li>
               <Link to = "/">Home</Link>
             </li>
+            <li>              
+              <Link to = "/allshows">All Shows</Link>
+            </li>
           </ul>
         </div>
       </nav>

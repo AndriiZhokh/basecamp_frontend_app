@@ -13,7 +13,7 @@ export default class Show extends Component {
   }
 
   componentDidMount() {
-    fetch('/season')
+    fetch('/seasons')
     .then(response => response.json())
     .then(data => {
       this.setState({seasons: data})
