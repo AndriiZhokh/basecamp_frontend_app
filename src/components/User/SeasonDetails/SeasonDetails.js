@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ReactPlayer from 'react-player';
 import Poster from '../Poster/Poster';
 import EpisodeList from '../EpisodeList/EpisodeList';
+import StarRatings from 'react-star-ratings';
 
 export default class SeasonDetails extends Component {
   constructor() {
@@ -11,7 +12,20 @@ export default class SeasonDetails extends Component {
       loading: false,
       error: null,
       episodes: [],
+      rating: 0
     }
+  }
+
+  changeRating = (newRating, name) => {
+    this.setState({rating: newRating});
+
+    const formData = new FormData();
+    formData.append('rating', newRating );
+
+    fetch(`/rating_season/${this.state.season.id}`, {
+      method: 'PUT',
+      body: formData
+    });
   }
 
   componentDidMount() {
@@ -26,7 +40,7 @@ export default class SeasonDetails extends Component {
         }
       })
       .then(data => {
-        this.setState({season: data[0], loading: false});
+        this.setState({season: data[0], loading: false, rating: data[0].users_rating});
         fetch('/episodes')
           .then(res => res.json())
           .then(data => this.setState({episodes: data}))
@@ -55,7 +69,19 @@ export default class SeasonDetails extends Component {
             <h5>{season.season_number}</h5>
             <p>{season.long_description}</p>
             <p><span>Published: </span>{season.date_of_publish}</p>
-            <p><span>Last modified date: </span>{season.last_modified_date}</p>      
+            <p><span>Last modified date: </span>{season.last_modified_date}</p>
+            <div>
+              <h5>Users rating</h5>
+              <StarRatings
+                rating = {this.state.rating}
+                starRatedColor = '#ee6e73'
+                starEmptyColor = '#ffffff'
+                numberOfStars = {10}
+                starDimension = '20px'
+                starSpacing = '3px'
+                name = 'rating'
+                changeRating = {this.changeRating} />
+            </div>      
           </div>
         </div>
         <div className = 'row'>

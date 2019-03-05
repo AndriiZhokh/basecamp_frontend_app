@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ReactPlayer from 'react-player';
+import StarRatings from 'react-star-ratings';
 import Poster from '../Poster/Poster';
 
 export default class EpisodeDetails extends Component {
@@ -9,7 +10,20 @@ export default class EpisodeDetails extends Component {
       episode: '',
       loading: 'false',
       error: null,
+      rating: 0,
     }
+  }
+
+  changeRating = (newRating, name) => {
+    this.setState({rating: newRating});
+
+    const formData = new FormData();
+    formData.append('rating', newRating );
+
+    fetch(`/rating_episode/${this.state.episode.id}`, {
+      method: 'PUT',
+      body: formData
+    });
   }
 
   componentDidMount() {
@@ -24,7 +38,7 @@ export default class EpisodeDetails extends Component {
         }
       })
       .then(data => {
-        this.setState({episode: data[0], loading: false});
+        this.setState({episode: data[0], loading: false, rating: data[0].users_rating});
       })
       .catch(err => this.setState({error: err, loading: false}));
   }
@@ -49,7 +63,19 @@ export default class EpisodeDetails extends Component {
             <h5>{episode.episode_number}</h5>
             <p>{episode.long_description}</p>
             <p><span>Published: </span>{episode.date_of_publish}</p>
-            <p><span>Last modified date: </span>{episode.last_modified_date}</p>   
+            <p><span>Last modified date: </span>{episode.last_modified_date}</p>
+            <div>
+              <h5>Users rating</h5>
+              <StarRatings
+                rating = {this.state.rating}
+                starRatedColor = '#ee6e73'
+                starEmptyColor = '#ffffff'
+                numberOfStars = {10}
+                starDimension = '20px'
+                starSpacing = '3px'
+                name = 'rating'
+                changeRating = {this.changeRating} />
+            </div> 
           </div>
         </div>
         <div className = 'row'>
