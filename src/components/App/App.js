@@ -10,6 +10,7 @@ import ShowDetails from '../User/ShowDetails/ShowDetails';
 import SeasonDetails from '../User/SeasonDetails/SeasonDetails';
 import EpisodeDetails from '../User/EpisodeDetails/EpisodeDetails';
 import AllShows from '../User/AllShows/AllShows';
+import Footer from '../Footer/Footer';
 
 class App extends Component {
   render() {
@@ -25,7 +26,8 @@ class App extends Component {
             <Route path = '/show_details/:title/season/:id/episode/:eid' component = {EpisodeDetails} />
             <Route path = '/allshows' component = {AllShows} />
             <Route component = {NotFound}/>
-          </Switch>          
+          </Switch>
+          <Footer/>        
         </div>
       </Router>
       
