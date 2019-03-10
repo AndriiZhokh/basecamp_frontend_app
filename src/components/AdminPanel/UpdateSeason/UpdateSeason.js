@@ -12,8 +12,8 @@ class UpdateSeason extends Component {
       seasonName: this.props.season.season_name,
       seasonNumber: this.props.season.season_number,
       relatedShow: this.props.season.related_show,
-      long: this.props.season.long_description,
-      short: this.props.season.short_description,
+      long: unescape(this.props.season.long_description),
+      short: unescape(this.props.season.short_description),
       url: this.props.season.video_fragment_url,
       rating: this.props.season.users_rating,
     };

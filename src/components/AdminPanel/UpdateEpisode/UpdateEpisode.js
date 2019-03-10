@@ -13,8 +13,8 @@ class UpdateEpisode extends Component {
       episodeNumber: this.props.episode.episode_number,
       relatedShow: this.props.episode.related_show,
       relatedSeason: this.props.episode.related_season,
-      long: this.props.episode.long_description,
-      short: this.props.episode.short_description,
+      long: unescape(this.props.episode.long_description),
+      short: unescape(this.props.episode.short_description),
       url: this.props.episode.video_fragment_url,
       rating: this.props.episode.users_rating,
     };

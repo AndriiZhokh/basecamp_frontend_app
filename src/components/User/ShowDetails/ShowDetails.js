@@ -79,10 +79,10 @@ export default class ShowDetails extends Component {
           <div className = 'col s12 m5'>       
             <h4>{show.title}</h4>
             <h5>{show.subtitle}</h5>
-            <p>{show.long_description}</p>
+            <p>{unescape(show.long_description)}</p>
             <p><span>Started: </span>{show.date_of_start}</p>
-            <p><span>Published: </span>Published: {show.date_of_publish}</p>
-            <p><span>Last modified date: </span>Last modified date: {show.last_modified_date}</p>
+            <p><span>Published: </span>{show.date_of_publish}</p>
+            <p><span>Last modified date: </span>{show.last_modified_date}</p>
             <div>
               <h5>Users rating</h5>
               <StarRatings

@@ -15,7 +15,7 @@ export default class ShowPreview extends Component {
             </div>
             <div className="card-content">
               <Link to = {`/show_details/${show.id}`}>{show.title}</Link>
-              <p>{show.short_description}</p>
+              <p>{unescape(show.short_description)}</p>
             </div>
           </div>
         </div>

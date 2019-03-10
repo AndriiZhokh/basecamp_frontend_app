@@ -61,7 +61,7 @@ export default class EpisodeDetails extends Component {
           <div className = 'col s12 m5'>       
             <h4>{episode.episode_name}</h4>
             <h5>{episode.episode_number}</h5>
-            <p>{episode.long_description}</p>
+            <p>{unescape(episode.long_description)}</p>
             <p><span>Published: </span>{episode.date_of_publish}</p>
             <p><span>Last modified date: </span>{episode.last_modified_date}</p>
             <div>

@@ -67,7 +67,7 @@ export default class SeasonDetails extends Component {
           <div className = 'col s12 m5'>       
             <h4>{season.season_name}</h4>
             <h5>{season.season_number}</h5>
-            <p>{season.long_description}</p>
+            <p>{unescape(season.long_description)}</p>
             <p><span>Published: </span>{season.date_of_publish}</p>
             <p><span>Last modified date: </span>{season.last_modified_date}</p>
             <div>
