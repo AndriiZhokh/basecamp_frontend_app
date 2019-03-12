@@ -23,7 +23,7 @@ export default class ShowDetails extends Component {
     const formData = new FormData();
     formData.append('rating', newRating );
 
-    fetch(`/rating/${this.state.show.id}`, {
+    fetch(`/show/rating/${this.state.show.id}`, {
       method: 'PUT',
       body: formData
     });
@@ -43,7 +43,7 @@ export default class ShowDetails extends Component {
       .then(data => {
         this.setState({show: data[0], loading: false, rating: data[0].users_rating});
         console.log(data[0].users_rating)
-        fetch('/seasons')
+        fetch('/season')
           .then(res => res.json())
           .then(data => this.setState({seasons: data}))
       })

@@ -20,7 +20,7 @@ export default class EpisodeDetails extends Component {
     const formData = new FormData();
     formData.append('rating', newRating );
 
-    fetch(`/rating_episode/${this.state.episode.id}`, {
+    fetch(`/episode/rating/${this.state.episode.id}`, {
       method: 'PUT',
       body: formData
     });

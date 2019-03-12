@@ -10,7 +10,7 @@ export default class AllShows extends Component {
   }
 
   componentDidMount() {
-    fetch('/shows')
+    fetch('/show')
       .then(res => res.json())
       .then(data => this.setState({shows: data}))
       .catch(err => console.log(err));

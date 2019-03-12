@@ -22,7 +22,7 @@ export default class SeasonDetails extends Component {
     const formData = new FormData();
     formData.append('rating', newRating );
 
-    fetch(`/rating_season/${this.state.season.id}`, {
+    fetch(`/season/rating/${this.state.season.id}`, {
       method: 'PUT',
       body: formData
     });
@@ -41,7 +41,7 @@ export default class SeasonDetails extends Component {
       })
       .then(data => {
         this.setState({season: data[0], loading: false, rating: data[0].users_rating});
-        fetch('/episodes')
+        fetch('/episode')
           .then(res => res.json())
           .then(data => this.setState({episodes: data}))
       })
